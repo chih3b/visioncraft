@@ -1,0 +1,477 @@
+/* ============================================================================
+   VisionCraft landing page — content & configuration
+   ----------------------------------------------------------------------------
+   Everything a non-engineer would want to edit lives here: copy, pricing,
+   FAQ, links. Anything marked  ⚠ REPLACE  is temporary and must be set before
+   launch — these are collected in the "what to replace" note in the handoff.
+   Values described as "real" are derived from the actual product and are safe.
+   ========================================================================== */
+
+/* ── Launch configuration ─────────────────────────────────────────────────
+   The public marketing site has no backend of its own (the app's FastAPI
+   server runs locally, per-user). So these point at whatever you use in
+   production: a direct download URL and a form endpoint (Formspree,
+   Buttondown, ConvertKit, or your own serverless function). Leave a field
+   empty to keep that control in honest "demo mode" — it validates and shows
+   its success state but tells the user nothing was stored yet. */
+export const CONFIG = {
+  DOWNLOAD_URL: '',            // direct link to the macOS .dmg
+  WAITLIST_ENDPOINT: 'https://formspree.io/f/mqpappdw',       // POST endpoint for waitlist emails
+  SUBSCRIBE_ENDPOINT: '',      // POST endpoint for newsletter emails
+  VERSION: '1.0',              // versioning (root package.json says 1.0.0)
+  DMG_SIZE: '',                // e.g. "412 MB" (bundles Python + Redis)
+  GITHUB_URL: '',              // optional — public repo / releases page
+  DOCS_URL: '',                // optional — documentation site
+}
+
+export const NAV_LINKS = [
+  { label: 'Features', href: '#features' },
+  { label: 'Workflow', href: '#workflow' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
+]
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+export const HERO = {
+  titleLead: 'Computer vision pipeline',
+  titleAccent: 'run by an agent',
+  subhead:
+    'Source datasets, train models, evaluate results, and deploy to edge devices—guided by an AI agent that explains every step. Runs locally. Your keys. Your data.',
+  primaryCta: 'Join early access',
+  secondaryCta: 'See how it works',
+  status: 'Early access open · macOS first',
+}
+
+/* Corner-annotation tags for the hero preview (the CV "detection" motif). */
+export const PREVIEW_TAGS = {
+  topLeft: 'agent.session',
+  confidence: '0.98',
+}
+
+/* ── The real app shell ─────────────────────────────────────────────────────
+   Mirrors DashboardLayout.jsx exactly, because a mockup that invents its own
+   chrome is worse than no mockup. Column widths, the icon-only rail, the
+   logo's position at the BOTTOM of the rail stack, the 32px drag strip, the
+   48px topbar whose only content is the command-palette trigger, and the 300px
+   inspector are all taken from the real component. */
+export const SHELL = {
+  railWidth: 56,
+  sidebarWidth: 260,
+  inspectorWidth: 300,
+  titlebarHeight: 32,
+  topbarHeight: 48,
+  // .rail-top — four areas, then the logo. Icons are the real lucide names.
+  areas: [
+    { key: 'build', label: 'Build', icon: 'Wrench', shortcut: '⌥1' },
+    { key: 'experiments', label: 'Experiments', icon: 'Activity', shortcut: '⌥2' },
+    { key: 'deploy', label: 'Deploy', icon: 'Rocket', shortcut: '⌥3' },
+    { key: 'operate', label: 'Operate', icon: 'MonitorPlay', shortcut: '⌥4' },
+  ],
+  // .secondary-nav per area, with the real ⌘ shortcuts.
+  nav: {
+    build: [
+      { key: 'orchestrator', label: 'Agent', icon: 'MessageSquare', shortcut: '⌘1' },
+      { key: 'pipeline', label: 'Data', icon: 'Layers', shortcut: '⌘2' },
+    ],
+    experiments: [
+      { key: 'training', label: 'Training', icon: 'Activity', shortcut: '⌘3' },
+      { key: 'models', label: 'Models', icon: 'Cpu', shortcut: '⌘4' },
+      { key: 'marketplace', label: 'Marketplace', icon: 'Server', shortcut: '⌘5' },
+    ],
+    deploy: [
+      { key: 'inference', label: 'Inference', icon: 'Crosshair', shortcut: '⌘6' },
+      { key: 'edge', label: 'Edge', icon: 'Server', shortcut: '⌘7' },
+      { key: 'integration', label: 'SDK', icon: 'Code2', shortcut: '⌘8' },
+    ],
+    operate: [{ key: 'monitor', label: 'Monitoring', icon: 'MonitorPlay', shortcut: '⌘9' }],
+  },
+  searchPlaceholder: 'Search command palette...',
+  searchKbd: '⌘K',
+  newConversation: 'New Conversation',
+  projects: [{ title: 'site-safety-cam', active: true }],
+  sessionGroups: [
+    { label: 'Today', sessions: [{ title: 'Helmet detection on site-cam-04', time: 'now', active: true }, { title: 'Compare yolov8n vs yolov8s', time: '2h' }] },
+    { label: 'Yesterday', sessions: [{ title: 'Shelf gap dataset review', time: '1d' }] },
+  ],
+  // .inspector-header h3 — one of the real titles.
+  inspectorTitle: 'Session',
+}
+
+/* ── Product preview transcript ─────────────────────────────────────────────
+   The three real agent modes. The `hint` strings are quoted VERBATIM from
+   AvatarInterface.jsx so the preview says exactly what the app says.
+   `execute` is the app's default mode, so it is the default here too. */
+export const PREVIEW_MODES = [
+  {
+    id: 'plan',
+    label: 'Plan',
+    hint: 'Maps out the steps — inspects data and models, but runs nothing',
+    prompt: 'Train a helmet-detection model for a construction-site camera.',
+    // The assistant replies as flat prose — no bubble, no avatar. Real app.
+    reply:
+      'Here is the approach. Nothing runs until you switch to Execute.',
+    plan: [
+      'Search Roboflow for a labelled hard-hat set and inspect the class balance',
+      'Fine-tune yolov8n for 80 epochs, holding out 15% for validation',
+      'Evaluate mAP50-95 per class and surface the weakest examples',
+      'Export to ONNX and stage a deploy to site-cam-04',
+    ],
+    activity: null,
+  },
+  {
+    id: 'execute',
+    label: 'Execute',
+    hint: 'Carries out the work — trains, downloads, and deploys for real',
+    prompt: 'Approved — run it.',
+    reply: 'Training is underway. I will report per-class numbers when it finishes.',
+    // AgentActivityCard: a dot-rail of label-only steps. The header string is
+    // computed by the real component — running shows the current tool label
+    // plus a U+2026 ellipsis.
+    activity: {
+      title: 'Starting training…',
+      state: 'running',
+      steps: [
+        { label: 'Searching Roboflow', status: 'success' },
+        { label: 'Preparing dataset', status: 'success' },
+        { label: 'Planning the training run', status: 'success' },
+        { label: 'Starting training', status: 'running' },
+      ],
+    },
+    // Real log format from TrainingCluster.jsx.
+    log: 'Epoch 62/80 | Loss: 0.0421 | mAP50-95: 0.847',
+    streaming: true,
+  },
+  {
+    id: 'review',
+    label: 'Review',
+    hint: 'Assesses finished work — reports measured results, changes nothing',
+    prompt: 'How did it do?',
+    reply: 'mAP50-95 is 0.847 overall. Two classes are solid; one is not.',
+    activity: {
+      title: 'Completed 2 tasks',
+      state: 'success',
+      steps: [
+        { label: 'Evaluating the model', status: 'success' },
+        { label: 'Inspecting the dataset', status: 'success' },
+      ],
+    },
+    // ConfidenceBar thresholds are real: ≥0.8 green, ≥0.6 yellow, ≥0.4 orange.
+    findings: [
+      { label: 'person', value: 0.97 },
+      { label: 'hardhat', value: 0.95 },
+      { label: 'vest', value: 0.71 },
+    ],
+    note: 'vest recall drops in low light. I can pull 200 more night-shift frames and retrain that class — want me to?',
+  },
+]
+
+/* The composer, quoted from the real .command-deck. The provider list and its
+   availability flags are real: Anthropic and OpenRouter are not yet wired up
+   and show a "Soon" badge in the app, so they show one here too. */
+export const COMPOSER = {
+  placeholder: 'Ask VisionCraft anything...',
+  providers: [
+    { id: 'gemini', label: 'Gemini', online: true },
+    { id: 'groq', label: 'Groq', online: true },
+    { id: 'openai', label: 'OpenAI', online: true },
+    { id: 'anthropic', label: 'Anthropic', online: false },
+    { id: 'openrouter', label: 'OpenRouter', online: false },
+  ],
+  defaultProvider: 'groq',
+  autopilotLabel: 'AutoPilot',
+  autopilotHint: 'AutoPilot on — the agent runs multi-step work without asking between steps',
+}
+
+
+/* ── Trust bar — BYOK providers (all real, supported in the app) ─────────── */
+export const PROVIDERS = [
+  { name: 'OpenAI' },
+  { name: 'Groq', tag: 'Free tier' },
+  { name: 'Gemini' },
+  { name: 'Hugging Face' },
+  { name: 'Roboflow' },
+  { name: 'Kaggle' },
+  { name: 'AWS S3' },
+  { name: 'GitHub' },
+]
+
+/* ── Key features (all real capabilities of the app) ──────────────────────── */
+export const FEATURES = [
+  {
+    icon: 'Bot',
+    title: 'Agent-driven workflow',
+    body: "Describe what you want in plain English. The agent plans the steps, picks the right tools, and explains what it's doing at each stage.",
+  },
+  {
+    icon: 'HardDrive',
+    title: 'Runs on your machine',
+    body: 'Training, inference, and your data never leave your computer. The backend, queue, and model store run inside the desktop app.',
+  },
+  {
+    icon: 'KeyRound',
+    title: 'Bring your own keys',
+    body: 'Connect OpenAI, Groq, Gemini, Roboflow, Kaggle, Hugging Face. You pay providers directly. The agent picks the right one per task.',
+  },
+  {
+    icon: 'Boxes',
+    title: 'Model marketplace',
+    body: 'Start from pretrained detection, classification, and segmentation models. Publish your own to a versioned catalog.',
+  },
+  {
+    icon: 'Cpu',
+    title: 'Live training metrics',
+    body: 'Queue runs, watch loss and mAP stream in real time, and compare experiments. Fall back to cloud GPUs when local hardware is tight.',
+  },
+  {
+    icon: 'Radio',
+    title: 'Edge deployment',
+    body: 'Push models to registered devices, then monitor throughput, latency, and drift from a single production dashboard.',
+  },
+]
+
+/* ── Workflow — a genuine ordered sequence (numbering is meaningful here) ───
+   `artifact` is the concrete thing that exists at the end of each stage, shown
+   in mono in the sticky panel — it keeps the section specific instead of
+   abstract. All are real outputs of the app. */
+export const WORKFLOW = [
+  {
+    step: 'Source',
+    title: 'Find and stage a dataset',
+    body: 'Search Roboflow, Kaggle, and Hugging Face from inside the app. The agent pulls a labelled set, inspects the class balance, and flags gaps before you spend a GPU-hour.',
+    artifact: 'datasets/hardhat-v3 · 8,412 images · 3 classes',
+  },
+  {
+    step: 'Train',
+    title: 'Fine-tune with live metrics',
+    body: 'Kick off a run and watch box loss, class loss, and mAP stream in real time. Checkpoints are versioned so you can always roll back to the best epoch.',
+    artifact: 'runs/2026-08-14/best.pt · epoch 62/80',
+  },
+  {
+    step: 'Evaluate',
+    title: 'Review per-class results',
+    body: 'The agent reads the actual predictions — not just the exit code — reports mAP per class, and surfaces the weakest examples so you know what to fix.',
+    artifact: 'eval/report.json · mAP50 0.94 · vest 0.71',
+  },
+  {
+    step: 'Deploy',
+    title: 'Export and push to a device',
+    body: 'Export to Core ML, ONNX, or TensorRT and stage a deploy to a registered edge device. The transfer is verified end to end, not assumed.',
+    artifact: 'exports/helmet.mlpackage → site-cam-04',
+  },
+  {
+    step: 'Monitor',
+    title: 'Watch it in production',
+    body: 'Track latency, throughput, and confidence drift per device. When a metric slips, the agent proposes the retrain that would fix it.',
+    artifact: 'site-cam-04 · 28 fps · p95 34ms · drift 0.02',
+  },
+]
+
+/* ── Showcase — interactive inference demo ──────────────────────────────────
+   Mirrors the real renderer in drawDetections.js: a label reads
+   `${label} ${round(conf*100)}%` (so "person 98%", never "person 0.98"), and
+   box colour comes from CLASS_COLORS indexed by class id — detections are NOT
+   all one colour in the app. `classId` below is a stable per-label index so the
+   same class keeps the same colour across scenes, exactly as class_id does.
+   Confidence values are illustrative; the mechanic is real. */
+
+// CLASS_COLORS, copied verbatim from frontend/src/components/pipeline/drawDetections.js
+export const CLASS_COLORS = [
+  '#00e5ff', '#22c55e', '#ef4444', '#eab308', '#a855f7',
+  '#ec4899', '#14b8a6', '#f97316', '#6366f1', '#84cc16',
+]
+
+export const SHOWCASE = {
+  // The app's real default Confidence Threshold, with the real step.
+  defaultThreshold: 0.45,
+  step: 0.05,
+  defaultIou: 0.7,
+  scenes: [
+    {
+      id: 'safety',
+      label: 'Site safety',
+      blurb: 'Hard-hat and hi-vis compliance on a construction camera.',
+      file: 'site-cam-04.jpg',
+      boxes: [
+        { label: 'person', conf: 0.98, classId: 0 },
+        { label: 'vest', conf: 0.74, classId: 1 },
+        { label: 'person', conf: 0.91, classId: 0 },
+        { label: 'hardhat', conf: 0.63, classId: 2 },
+        { label: 'forklift', conf: 0.47, classId: 3 },
+      ],
+    },
+    {
+      id: 'retail',
+      label: 'Retail shelf',
+      blurb: 'Facings and stock gaps across a supermarket aisle.',
+      file: 'shelf-aisle-7.jpg',
+      boxes: [
+        { label: 'bottle', conf: 0.96, classId: 0 },
+        { label: 'can', conf: 0.71, classId: 1 },
+        { label: 'box', conf: 0.88, classId: 2 },
+        { label: 'bottle', conf: 0.66, classId: 0 },
+        { label: 'gap', conf: 0.44, classId: 4 },
+      ],
+    },
+    {
+      id: 'traffic',
+      label: 'Intersection',
+      blurb: 'Vehicles and vulnerable road users at a junction.',
+      file: 'intersection-12.jpg',
+      boxes: [
+        { label: 'car', conf: 0.97, classId: 0 },
+        { label: 'pedestrian', conf: 0.72, classId: 1 },
+        { label: 'car', conf: 0.85, classId: 0 },
+        { label: 'cyclist', conf: 0.58, classId: 5 },
+        { label: 'sign', conf: 0.41, classId: 3 },
+      ],
+    },
+  ],
+}
+
+/* ── Pricing — ⚠ REPLACE all numbers/limits with your real plans ──────────── */
+export const PRICING = {
+  tiers: [
+    {
+      name: 'Preview',
+      price: 'Free',
+      cadence: 'while in preview',
+      tagline: 'The full app while we’re in public preview.',
+      features: [
+        'Every feature, no seat limit',
+        'Bring your own provider keys',
+        'Local training & inference',
+        'Community support',
+      ],
+      cta: 'Download for macOS',
+      kind: 'download',
+      featured: false,
+    },
+    {
+      name: 'Pro',
+      price: 'Coming soon',
+      cadence: '',
+      tagline: 'For practitioners shipping models regularly.',
+      features: [
+        'Everything in Preview',
+        'Priority cloud-GPU fallback',
+        'Private model marketplace',
+        'Email support',
+      ],
+      cta: 'Join the waitlist',
+      kind: 'waitlist',
+      featured: true,
+    },
+    {
+      name: 'Team',
+      price: 'Custom',
+      cadence: 'billed annually',
+      tagline: 'Shared catalog and fleet for a team.',
+      features: [
+        'Everything in Pro',
+        'Shared edge fleet & devices',
+        'SSO & audit log',
+        'Dedicated support',
+      ],
+      cta: 'Contact sales',
+      kind: 'contact',
+      featured: false,
+    },
+  ],
+}
+
+/* ── Social proof — ⚠ REPLACE with real, attributable quotes ──────────────── */
+export const TESTIMONIALS = {
+  note: '⚠ Placeholder testimonials — do not publish. Replace with real, consented quotes and attribution.',
+  items: [
+    {
+      quote:
+        'The Review mode is the part I didn’t know I needed — it tells me the model is weak on one class instead of just saying “done”.',
+      name: 'Placeholder name',
+      role: 'Computer-vision engineer',
+    },
+    {
+      quote:
+        'Sourcing, training, and deploying in one window — without stitching together five tools — is the whole pitch, and it holds up.',
+      name: 'Placeholder name',
+      role: 'ML lead',
+    },
+    {
+      quote:
+        'It runs on my laptop against my own keys. Nothing leaves the machine, which is the only way legal would let us try it.',
+      name: 'Placeholder name',
+      role: 'Founder',
+    },
+  ],
+}
+
+/* ── System requirements (⚠ confirm the exact macOS floor for your build) ─── */
+export const REQUIREMENTS = {
+  available: {
+    platform: 'macOS',
+    items: [
+      'macOS 12 Monterey or later', // ⚠ confirm minimum
+      'Apple silicon or Intel',
+      '16 GB RAM recommended',
+      '~2 GB free disk (bundles Python & Redis)', // ⚠ confirm size
+    ],
+  },
+  soon: [
+    { platform: 'Windows', note: 'Coming soon' },
+    { platform: 'Linux', note: 'Coming soon' },
+  ],
+}
+
+/* ── FAQ (answers are real) ───────────────────────────────────────────────── */
+export const FAQS = [
+  {
+    q: 'Does my data or my images ever leave my machine?',
+    a: 'No. Training, inference, the job queue, and the model store all run inside the app on your computer. The only outbound calls are the ones you configure — to the AI providers whose keys you supply.',
+  },
+  {
+    q: 'What does “bring your own keys” mean in practice?',
+    a: 'You paste API keys for the providers you want to use (OpenAI, Groq, Gemini, Hugging Face, Roboflow, and others). VisionCraft uses them on your behalf and you’re billed by each provider directly. Groq has a free tier that covers most of the agent’s work.',
+  },
+  {
+    q: 'Do I need a GPU?',
+    a: 'It helps for training, but it isn’t required. You can fall back to cloud GPUs through your own provider or run smaller jobs on local CPU. Inference on exported models runs comfortably on Apple silicon.',
+  },
+  {
+    q: 'When are Windows and Linux coming?',
+    a: 'macOS is available now. Windows and Linux are on the roadmap — join the waitlist and we’ll email you the moment a build is ready for your platform.',
+  },
+  {
+    q: 'What can the agent actually do on its own?',
+    a: 'In Execute mode it can search and pull datasets, launch and monitor training runs, evaluate results, export models, and stage deployments. In Plan mode it proposes the steps and waits; in Review mode it audits its own output and tells you what it could and couldn’t verify.',
+  },
+]
+
+export const FOOTER = {
+  tagline: 'The computer-vision pipeline, run by an agent.',
+  columns: [
+    {
+      title: 'Product',
+      links: [
+        { label: 'Features', href: '#features' },
+        { label: 'Workflow', href: '#workflow' },
+        { label: 'Pricing', href: '#pricing' },
+        { label: 'Download', href: '#download' },
+      ],
+    },
+    {
+      title: 'Resources',
+      links: [
+        { label: 'FAQ', href: '#faq' },
+        { label: 'Documentation', href: '#', external: true }, // ⚠ REPLACE href
+        { label: 'System requirements', href: '#download' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Privacy', href: '#', external: true }, // ⚠ REPLACE href
+        { label: 'Terms', href: '#', external: true }, // ⚠ REPLACE href
+        { label: 'Contact', href: 'mailto:hello@visioncraft.ai' }, // ⚠ REPLACE address
+      ],
+    },
+  ],
+}

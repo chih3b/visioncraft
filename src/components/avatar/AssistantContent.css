@@ -1,0 +1,469 @@
+/* ── System message components ── */
+
+.assistant-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Callout Box ── */
+.system-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.callout-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.callout-warning {
+  background: rgba(234, 179, 8, 0.06);
+  border: 1px solid rgba(234, 179, 8, 0.15);
+  color: #eab308;
+}
+
+.callout-error {
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.callout-success {
+  background: rgba(34, 197, 94, 0.06);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+.callout-info {
+  background: rgba(0, 163, 255, 0.06);
+  border: 1px solid rgba(0, 163, 255, 0.15);
+  color: #00e5ff;
+}
+
+/* ── Terminal Snippet ── */
+.system-terminal-snippet {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.terminal-snippet-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.terminal-snippet-header span {
+  flex: 1;
+}
+
+.terminal-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #888;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease, transform 0.12s ease, filter 0.12s ease;
+  font-family: inherit;
+}
+
+.terminal-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ccc;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.terminal-snippet-body {
+  padding: 12px 14px;
+  overflow-x: auto;
+}
+
+.terminal-snippet-body code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: #e6edf3;
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+/* ── Progress Card ── */
+.system-progress-card {
+  border-radius: 10px;
+  background: rgba(0, 163, 255, 0.04);
+  border: 1px solid rgba(0, 163, 255, 0.12);
+  overflow: hidden;
+}
+
+.progress-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #00e5ff;
+  border-bottom: 1px solid rgba(0, 163, 255, 0.08);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.progress-card-body {
+  padding: 12px 14px;
+}
+
+.progress-card-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.progress-card-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-card-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00e5ff, #5cefff);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* ── Provider Warning Toast (inline) ── */
+.system-provider-toast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ── Dataset Summary Card ── */
+.system-dataset-card {
+  background: rgba(34, 197, 94, 0.06);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  border-radius: 10px;
+  padding: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+}
+
+.dataset-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.08);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+}
+
+.dataset-card-body {
+  display: flex;
+  gap: 2rem;
+  padding: 12px 16px;
+}
+
+.dataset-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dataset-stat-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent, #f0f0f0);
+}
+
+.dataset-stat-label {
+  font-size: 0.65rem;
+  color: var(--text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Model Selection Card ── */
+.system-model-card {
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  border-radius: 10px;
+  padding: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+}
+
+.model-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5cefff;
+  background: rgba(0, 229, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+.model-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.model-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.model-card-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  letter-spacing: -0.01em;
+}
+
+.model-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.model-meta-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(0, 229, 255, 0.15);
+  color: var(--accent-fg);
+  letter-spacing: 0.02em;
+}
+
+.model-meta-detail {
+  font-size: 0.65rem;
+  color: var(--text-muted, #888);
+}
+
+.artifact-action-btn {
+  margin-left: auto;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+  flex-shrink: 0;
+}
+
+.artifact-action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.artifact-action-btn.primary {
+  background: rgba(0, 229, 255, 0.18);
+  border-color: rgba(0, 229, 255, 0.35);
+  color: var(--accent-fg);
+}
+
+.artifact-action-btn.primary:hover {
+  background: rgba(0, 229, 255, 0.3);
+  border-color: rgba(0, 229, 255, 0.5);
+  color: #d6f7ff;
+}
+
+/* Live Training Widget in Chat */
+.active-training-card {
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+}
+
+/* A finished job is a record, not an event. Only the in-flight state earns the
+   saturated accent fill; otherwise the emptiest card on screen was also the
+   loudest one. */
+.active-training-card.state-completed,
+.active-training-card.state-cancelled {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+.active-training-card.state-failed {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.22);
+}
+
+.status-badge-mini {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(0, 229, 255, 0.2);
+  color: var(--accent-fg);
+}
+
+.status-badge-mini.completed {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.status-badge-mini.failed {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.status-badge-mini.cancelled {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.model-card-live-body {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.live-progress-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.live-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00e5ff, #a6f2ff);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.live-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.18);
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-label {
+  font-size: 0.6rem;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric-val {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* "not reported" is a statement about the run, not a value. Style it as absent
+   so it never gets scanned as a number. */
+.metric-val-absent {
+  font-size: 0.7rem;
+  font-weight: 500;
+  font-style: italic;
+  color: #6b6b6b;
+  letter-spacing: 0.01em;
+}
+
+.model-card-note {
+  margin: 0;
+  padding: 7px 9px;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: #d9c48a;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 6px;
+}
+
+.pulse-icon {
+  animation: pulse-glow 1.5s infinite alternate;
+  color: #5cefff;
+}
+
+@keyframes pulse-glow {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.model-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  width: 100%;
+}
+
+.model-card-actions .artifact-action-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  margin-left: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.artifact-action-btn.danger {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #f87171;
+}
+
+.artifact-action-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.45);
+  color: #fca5a5;
+}
+
+
+

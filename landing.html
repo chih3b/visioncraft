@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+
+    <title>VisionCraft — The computer-vision pipeline, run by an agent</title>
+    <meta
+      name="description"
+      content="VisionCraft is a local-first macOS app where an AI agent plans, runs, and reviews your entire computer-vision pipeline — from dataset to trained model to edge deployment. Bring your own keys."
+    />
+
+    <!-- Open Graph / social preview. og:image is a real 1200x630 raster —
+         scrapers will not render an SVG, so the favicon cannot stand in for it.
+         REPLACE og:url with the production domain before launch; og:image must
+         also become absolute (https://…/og-image.png), because Twitter and
+         LinkedIn resolve it against nothing and drop relative paths. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="VisionCraft — The computer-vision pipeline, run by an agent" />
+    <meta
+      property="og:description"
+      content="An AI agent that plans, runs, and reviews your entire computer-vision pipeline. Local-first, macOS, bring your own keys."
+    />
+    <meta property="og:url" content="https://visioncraft.ai/" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The VisionCraft mark" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts load non-blocking (same strategy as the app shell): paint
+         immediately in the fallback stack, swap when the webfont resolves. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Space+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Space+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      />
+    </noscript>
+  </head>
+  <body>
+    <div id="landing-root"></div>
+    <script type="module" src="/src/landing/main.jsx"></script>
+  </body>
+</html>

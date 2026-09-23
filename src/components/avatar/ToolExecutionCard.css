@@ -1,0 +1,248 @@
+/* ═══════════════════════════════════════════════════════
+   Tool Execution Card - Professional Visual Feedback
+   ═══════════════════════════════════════════════════════ */
+
+.tool-execution-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 12px 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+  max-width: 600px;
+}
+
+.tool-execution-card.status-running {
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.05);
+}
+
+.tool-execution-card.status-success {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.tool-execution-card.status-error {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+/* ── Header ── */
+.tool-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+}
+
+.status-running .tool-card-icon {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+}
+
+.status-success .tool-card-icon {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.status-error .tool-card-icon {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.tool-card-label {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tool-card-status {
+  display: flex;
+  align-items: center;
+}
+
+.tool-status-icon {
+  flex-shrink: 0;
+}
+
+.status-running {
+  color: #00e5ff;
+  animation: spin 1s linear infinite;
+}
+
+.status-success {
+  color: #10b981;
+}
+
+.status-error {
+  color: #ef4444;
+}
+
+.status-pending {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Arguments ── */
+.tool-card-args {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+}
+
+.tool-arg {
+  display: flex;
+  gap: 8px;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.arg-key {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.arg-value {
+  color: rgba(255, 255, 255, 0.8);
+  flex: 1;
+  word-break: break-word;
+}
+
+/* ── Result Display ── */
+.tool-card-result {
+  padding: 10px 12px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 6px;
+}
+
+.result-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: #10b981;
+  margin-bottom: 8px;
+}
+
+.dataset-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dataset-preview-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.dataset-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  flex: 1;
+}
+
+.dataset-meta {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-mono);
+}
+
+.tool-result-training {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.training-job-id,
+.training-status {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-mono);
+}
+
+/* The dataset-search result block. Its children (.result-count,
+   .dataset-preview-list) were styled but the wrapper was not, so the count and
+   the list ran together with no separation. */
+.tool-result-datasets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tool-result-dataset {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dataset-path-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #10b981;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dataset-path {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-mono);
+  word-break: break-all;
+}
+
+.tool-result-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+/* ── Error Display ── */
+.tool-card-error {
+  padding: 10px 12px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 6px;
+}
+
+.error-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ef4444;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.error-message {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}

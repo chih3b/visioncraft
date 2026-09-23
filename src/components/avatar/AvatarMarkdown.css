@@ -1,0 +1,194 @@
+.markdown-body {
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--text-md);
+  line-height: 1.7;
+}
+
+.markdown-body p {
+  margin-bottom: 1rem;
+}
+
+.markdown-body p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body ul, .markdown-body ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.markdown-body h1 { font-size: var(--text-xl); }
+.markdown-body h2 { font-size: var(--text-lg); }
+.markdown-body h3 { font-size: var(--text-md); }
+
+.markdown-inline-code {
+  background: var(--surface-overlay);
+  padding: 0.15rem 0.35rem;
+  border-radius: var(--radius-sm);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85em;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.markdown-code-wrapper {
+  margin: 1.25rem 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--canvas);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-sm);
+}
+
+.markdown-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-overlay);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.markdown-code-lang {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  text-transform: lowercase;
+}
+
+.markdown-code-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.markdown-code-copy {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-base) ease, border-color var(--transition-base) ease, color var(--transition-base) ease, box-shadow var(--transition-base) ease, opacity var(--transition-base) ease, transform var(--transition-base) ease, filter var(--transition-base) ease;
+}
+
+.markdown-code-copy:hover {
+  background: var(--surface-overlay);
+  color: var(--text-secondary);
+}
+
+.markdown-code-block {
+  margin: 0 !important;
+  border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
+  font-size: var(--text-sm) !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.markdown-code-block code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+}
+
+.markdown-body .blinking-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #00e5ff;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+.markdown-body a {
+  color: #00e5ff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.3);
+  transition: background-color 0.18s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.18s cubic-bezier(0.4, 0, 0.2, 1), color 0.18s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.18s cubic-bezier(0.4, 0, 0.2, 1), transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), filter 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.markdown-body a:hover {
+  color: #5cefff;
+  border-bottom-color: #00e5ff;
+}
+
+.markdown-body strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.markdown-body em {
+  color: var(--text-secondary);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Enhanced Markdown Elements */
+.markdown-body blockquote {
+  border-left: 3px solid rgba(0, 229, 255, 0.5);
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 6px 6px 0;
+}
+
+.markdown-body hr {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  margin: 1.5rem 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.markdown-body th, .markdown-body td {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.markdown-body th {
+  background: rgba(255, 255, 255, 0.03);
+  font-weight: 600;
+  color: #fff;
+  font-size: 13px;
+}
+
+.markdown-body tr:nth-child(2n) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ===== Streaming Cursor ===== */
+.markdown-body.streaming > *:last-child::after {
+  content: '▍';
+  animation: blink 1s step-start infinite;
+  color: #00e5ff;
+  margin-left: 4px;
+}
