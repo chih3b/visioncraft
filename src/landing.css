@@ -2988,11 +2988,11 @@ html, body {
 .lp-hero {
   min-height: auto !important;
   background: var(--canvas) !important;
-  padding: 120px 0 80px 0 !important;
+  padding: 0 !important;
 }
 
 .lp-hero-inner {
-  padding: 120px 24px !important;
+  padding: 100px 24px 60px 24px !important;
 }
 
 .lp-hero-content {
@@ -4266,10 +4266,14 @@ html::-webkit-scrollbar-thumb:hover {
   right: 0;
   min-width: 160px;
   padding: 6px;
-  background: var(--elev-1);
-  border: 1px solid var(--border-default);
+  background: rgba(14, 16, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(85, 215, 229, 0.15);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(85, 215, 229, 0.1);
   z-index: 1000;
   animation: slideDown 0.2s var(--ease-out);
 }
@@ -5453,4 +5457,52 @@ select.lp-field {
   .lp-page-back span {
     display: none;
   }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DEBUG - TEMPORARY FIX FOR LAYOUT SPLIT ISSUE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Force vertical stacking of all top-level elements */
+#landing-root,
+#root {
+  display: block !important;
+  flex-direction: column !important;
+  min-height: auto !important;
+  width: 100% !important;
+}
+
+/* Ensure main flows naturally without constraints */
+main {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+/* Force each section to be full width and stack vertically */
+.lp-nav,
+.lp-hero,
+.lp-showcase,
+.lp-section,
+.lp-footer {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Fix showcase section display */
+.lp-showcase {
+  padding: 40px 0 !important;
+}
+
+/* Ensure sections stack vertically */
+.lp-section {
+  padding: 80px 0 !important;
+}
+
+/* Remove any absolute/fixed positioning from footer that might cause issues */
+.lp-footer {
+  clear: both !important;
 }

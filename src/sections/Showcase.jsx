@@ -58,10 +58,11 @@ function ShowcaseItem({ shot, index, reduced, content }) {
     offset: ["start end", "end start"]
   })
   
-  // Parallax: image moves slower than text
-  const imageY = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95])
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  // Parallax: image moves slower than text  
+  const imageY = useTransform(scrollYProgress, [0, 1], [50, -50])
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.98, 1, 0.98])
+  // Fixed opacity - always visible, slight fade at edges
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.8, 1, 1, 0.8])
 
   return (
     <div ref={ref} className="lp-showcase-item">
