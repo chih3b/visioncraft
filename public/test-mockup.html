@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionCraft Mockup Mode Tester</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+        h1 {
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #888;
+            margin-bottom: 30px;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+        .status.enabled {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: #00d9ff;
+        }
+        .status.disabled {
+            background: rgba(255, 100, 100, 0.1);
+            border-color: #ff6464;
+        }
+        button {
+            background: #00d9ff;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #00b8dd;
+        }
+        button.secondary {
+            background: #333;
+            color: #fff;
+        }
+        button.secondary:hover {
+            background: #444;
+        }
+        pre {
+            background: #111;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+        .actions {
+            margin: 30px 0;
+        }
+        .info-box {
+            background: rgba(255, 200, 0, 0.1);
+            border: 1px solid #ffc800;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        code {
+            background: #222;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #00d9ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎭 Mockup Mode Tester</h1>
+    <p class="subtitle">Test and control VisionCraft mockup mode for screenshots</p>
+
+    <div id="status" class="status">
+        <strong>Status:</strong> <span id="status-text">Checking...</span>
+    </div>
+
+    <div class="info-box">
+        <strong>ℹ️ Important:</strong> After enabling/disabling, you must reload the VisionCraft app for changes to take effect.
+    </div>
+
+    <div class="actions">
+        <h3>Actions</h3>
+        <button onclick="checkStatus()">🔄 Refresh Status</button>
+        <button onclick="enableMockup()">✅ Enable Mockup Mode</button>
+        <button onclick="disableMockup()">❌ Disable Mockup Mode</button>
+        <button onclick="clearAll()" class="secondary">🗑️ Clear All Storage</button>
+    </div>
+
+    <div class="actions">
+        <h3>Quick Tests</h3>
+        <button onclick="testAgent()">Test Agent Page Data</button>
+        <button onclick="testTraining()">Test Training Page Data</button>
+        <button onclick="testData()">Test Data Page Data</button>
+    </div>
+
+    <h3>Console Output</h3>
+    <pre id="console"></pre>
+
+    <h3>What Each Page Should Show</h3>
+    <pre>
+<strong>✅ Agent Page:</strong>
+- 4 conversation messages
+- Tool activity cards (search_datasets, download_dataset)
+- Timestamps (10:24 AM, 10:26 AM)
+
+<strong>✅ Training Page:</strong>
+- Project: vehicle-detection-yolov8
+- Progress: Epoch 67/100
+- Metrics: Loss 0.0234, mAP 0.847
+- GPU: 94% utilization, 9.2/11 GB
+
+<strong>✅ Data Page:</strong>
+- 3 datasets (COCO, Parking, Traffic Signs)
+- Sizes: 18.2 GB, 2.4 GB, 1.8 GB
+- 2 prepared, 1 not prepared
+
+<strong>✅ Models Page:</strong>
+- 3 models with ratings
+- YOLOv8m (4.8★), EfficientDet-D3 (4.5★), ResNet50 (4.9★)
+
+<strong>✅ Deployments Page:</strong>
+- Bootstrap script with token
+- Device IP: 192.168.1.110
+- Probe results with hardware specs
+- 2 deployed models
+    </pre>
+
+    <script>
+        function log(message, type = 'info') {
+            const console = document.getElementById('console');
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#ff6464' : type === 'success' ? '#00ff88' : '#888';
+            console.innerHTML += `<span style="color: ${color}">[${timestamp}] ${message}</span>\n`;
+            console.scrollTop = console.scrollHeight;
+        }
+
+        function checkStatus() {
+            const mockupMode = localStorage.getItem('mockupMode');
+            const statusDiv = document.getElementById('status');
+            const statusText = document.getElementById('status-text');
+            
+            if (mockupMode === 'true') {
+                statusDiv.className = 'status enabled';
+                statusText.textContent = '✅ ENABLED - Mockup data will be shown';
+                log('Mockup mode is ENABLED', 'success');
+            } else if (mockupMode === null) {
+                statusDiv.className = 'status disabled';
+                statusText.textContent = '⚠️ NOT SET - Will be enabled on first load';
+                log('Mockup mode not set - will auto-enable', 'info');
+            } else {
+                statusDiv.className = 'status disabled';
+                statusText.textContent = '❌ DISABLED - Real data will be shown';
+                log('Mockup mode is DISABLED', 'error');
+            }
+        }
+
+        function enableMockup() {
+            localStorage.setItem('mockupMode', 'true');
+            log('✅ Mockup mode ENABLED', 'success');
+            log('⚠️ Reload the VisionCraft app to see changes', 'info');
+            checkStatus();
+        }
+
+        function disableMockup() {
+            localStorage.removeItem('mockupMode');
+            log('❌ Mockup mode DISABLED', 'error');
+            log('⚠️ Reload the VisionCraft app to see changes', 'info');
+            checkStatus();
+        }
+
+        function clearAll() {
+            if (confirm('This will clear ALL localStorage and sessionStorage. Continue?')) {
+                localStorage.clear();
+                sessionStorage.clear();
+                log('🗑️ All storage cleared', 'info');
+                log('⚠️ Reload the VisionCraft app - mockup will auto-enable', 'info');
+                checkStatus();
+            }
+        }
+
+        function testAgent() {
+            log('Testing Agent page data...');
+            const mockupMode = localStorage.getItem('mockupMode');
+            if (mockupMode === 'true') {
+                log('✅ Agent page should show:', 'success');
+                log('  - 4 conversation messages');
+                log('  - Tool cards: search_datasets, download_dataset');
+                log('  - Progress: 67% on download_dataset');
+                log('  - Timestamps: 10:24 AM, 10:26 AM');
+            } else {
+                log('❌ Mockup mode disabled - enable it first', 'error');
+            }
+        }
+
+        function testTraining() {
+            log('Testing Training page data...');
+            const mockupMode = localStorage.getItem('mockupMode');
+            if (mockupMode === 'true') {
+                log('✅ Training page should show:', 'success');
+                log('  - Project: vehicle-detection-yolov8');
+                log('  - Epoch: 67/100 (67%)');
+                log('  - Loss: 0.0234, mAP: 0.847');
+                log('  - GPU: 94% util, 9.2/11 GB');
+                log('  - ETA: 42 minutes');
+            } else {
+                log('❌ Mockup mode disabled - enable it first', 'error');
+            }
+        }
+
+        function testData() {
+            log('Testing Data page data...');
+            const mockupMode = localStorage.getItem('mockupMode');
+            if (mockupMode === 'true') {
+                log('✅ Data page should show:', 'success');
+                log('  - COCO Vehicles: 43,628 images, 18.2 GB (Prepared)');
+                log('  - Parking Lot: 8,429 images, 2.4 GB (Not prepared)');
+                log('  - Traffic Signs: 12,503 images, 1.8 GB (Prepared)');
+            } else {
+                log('❌ Mockup mode disabled - enable it first', 'error');
+            }
+        }
+
+        // Check status on load
+        checkStatus();
+        log('Mockup Mode Tester loaded');
+        log('Use the buttons above to test mockup mode');
+    </script>
+</body>
+</html>
