@@ -1,6 +1,6 @@
 import { Command } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import VisionCraftLogo from '../../components/avatar/VisionCraftLogo'
+import VisionCraftLogo from '../components/avatar/VisionCraftLogo'
 import EmailFormSimple from '../EmailFormSimple'
 import { CONFIG } from '../content'
 import { useLanguage } from '../useLanguage'

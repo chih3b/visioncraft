@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Menu, X } from 'lucide-react'
-import VisionCraftLogo from '../../components/avatar/VisionCraftLogo'
+import VisionCraftLogo from '../components/avatar/VisionCraftLogo'
 import { CONFIG } from '../content'
 import { useLanguage } from '../useLanguage'
 import LanguageSelector from '../LanguageSelector'

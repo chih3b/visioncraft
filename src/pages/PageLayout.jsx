@@ -1,6 +1,6 @@
 import { ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import VisionCraftLogo from '../../components/avatar/VisionCraftLogo'
+import VisionCraftLogo from '../components/avatar/VisionCraftLogo'
 import { useLanguage } from '../useLanguage'
 
 export default function PageLayout({ title, children }) {

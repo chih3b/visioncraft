@@ -8,7 +8,7 @@ import {
   Plus, Search, PanelRightOpen, X, RefreshCw, CircleCheck,
   Paperclip, ChevronDown, ChevronUp, Zap, ArrowRight, User,
 } from 'lucide-react'
-import VisionCraftLogo from '../../components/avatar/VisionCraftLogo'
+import VisionCraftLogo from '../components/avatar/VisionCraftLogo'
 import { SHELL, PREVIEW_MODES, COMPOSER } from '../content'
 
 /* ============================================================================

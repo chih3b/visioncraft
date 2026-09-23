@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import { CircleCheck, AlertCircle, LoaderCircle, ArrowRight } from 'lucide-react'
+import { CheckCircle, AlertCircle, Loader2, ArrowRight } from 'lucide-react'
 import { useLanguage } from './useLanguage'
 
 /* Progressive collection form - quick email capture, then ask for more details */
@@ -166,7 +166,7 @@ export default function EmailFormSimple({
   if (step === 'success') {
     return (
       <div className="lp-success-panel" role="status" aria-live="polite">
-        <CircleCheck className="lp-check" size={22} aria-hidden="true" />
+        <CheckCircle className="lp-check" size={22} aria-hidden="true" />
         <div>
           <h4>{successTitle}</h4>
           <p>
@@ -284,7 +284,7 @@ export default function EmailFormSimple({
             <button type="submit" className="lp-btn lp-btn-primary" disabled={status === 'submitting'}>
               {status === 'submitting' ? (
                 <>
-                  <LoaderCircle className="lp-spin" size={17} aria-hidden="true" />
+                  <Loader2 className="lp-spin" size={17} aria-hidden="true" />
                   {t.form.submitting}
                 </>
               ) : (
