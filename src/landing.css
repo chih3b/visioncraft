@@ -2006,7 +2006,7 @@ html, body {
 
 /* ── Forms (waitlist + newsletter) ─────────────────────────────────────────── */
 .lp-form { display: flex; flex-direction: column; gap: 14px; max-width: 480px; }
-.lp-form-row { display: flex; gap: 12px; }
+.lp-form-row { display: flex; gap: 16px; }
 
 /* Enhanced form with multiple fields */
 .lp-form-enhanced { 
@@ -3234,7 +3234,7 @@ html, body {
 }
 
 
-/* Modern navbar with blur and rounded corners */
+/* Modern navbar with blur and rounded corners - FIXED POSITION */
 .lp-nav {
   position: fixed !important;
   top: 16px !important;
@@ -3242,7 +3242,7 @@ html, body {
   transform: translateX(-50%) !important;
   width: calc(100% - 32px) !important;
   max-width: 1200px !important;
-  z-index: 100 !important;
+  z-index: 1000 !important;
   border: 1px solid var(--border-subtle) !important;
   border-radius: 16px !important;
   background: rgba(9, 10, 12, 0.7) !important;
@@ -3252,6 +3252,11 @@ html, body {
     0 0 0 1px rgba(85, 215, 229, 0.06),
     0 8px 32px rgba(0, 0, 0, 0.4) !important;
   transition: all 0.3s var(--ease-out) !important;
+}
+
+/* Add padding to body to account for fixed navbar */
+#landing-root {
+  padding-top: 96px !important; /* navbar height + top margin + some buffer */
 }
 
 .lp-nav-inner {
@@ -5505,4 +5510,272 @@ main {
 /* Remove any absolute/fixed positioning from footer that might cause issues */
 .lp-footer {
   clear: both !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER RESPONSIVE IMPROVEMENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet and below (768px) */
+@media (max-width: 768px) {
+  .lp-footer {
+    padding: 48px 0 32px;
+  }
+  
+  .lp-footer-sub {
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+    gap: 24px;
+  }
+  
+  .lp-footer-sub-copy {
+    text-align: center;
+    flex: 1 1 auto;
+  }
+  
+  .lp-footer-sub-copy h4 {
+    font-size: 20px;
+  }
+  
+  .lp-footer-sub-copy p {
+    font-size: 15px;
+  }
+  
+  .lp-footer-sub .lp-form {
+    max-width: 100%;
+    flex: 1 1 auto;
+  }
+  
+  .lp-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 32px;
+  }
+  
+  .lp-footer-brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .lp-footer-col {
+    text-align: center;
+  }
+  
+  .lp-footer-col ul {
+    align-items: center;
+  }
+  
+  .lp-footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* Mobile (640px and below) */
+@media (max-width: 640px) {
+  .lp-footer {
+    padding: 40px 0 24px;
+  }
+  
+  .lp-footer-sub {
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+  }
+  
+  .lp-footer-sub-copy h4 {
+    font-size: 18px;
+  }
+  
+  .lp-footer-sub-copy p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Make form row stack vertically on mobile */
+  .lp-footer-sub .lp-form-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .lp-footer-sub .lp-field {
+    width: 100% !important;
+  }
+  
+  .lp-footer-sub .lp-btn {
+    width: 100% !important;
+  }
+  
+  .lp-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 24px;
+  }
+  
+  .lp-footer-brand {
+    grid-column: 1;
+  }
+  
+  .lp-footer-bottom {
+    margin-top: 32px;
+    padding-top: 16px;
+  }
+  
+  .lp-footer-copy,
+  .lp-footer-mac {
+    font-size: 12px;
+  }
+}
+
+/* Fix form field and button alignment in footer - consistent heights */
+.lp-footer-sub .lp-form-row {
+  align-items: stretch;
+  gap: 16px; /* Increased spacing between input and button */
+}
+
+.lp-footer-sub .lp-field,
+.lp-footer-sub .lp-btn {
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.lp-footer-sub .lp-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.lp-footer-sub .lp-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Extra small mobile adjustments */
+@media (max-width: 480px) {
+  .lp-footer {
+    padding: 32px 0 20px;
+  }
+  
+  .lp-footer-sub {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+  
+  .lp-footer-grid {
+    gap: 24px;
+  }
+  
+  .lp-footer-col h5 {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  
+  .lp-footer-col ul {
+    gap: 8px;
+  }
+  
+  .lp-footer-col a {
+    font-size: 14px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVBAR MOBILE RESPONSIVE FIXES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .lp-nav {
+    top: 8px !important;
+    width: calc(100% - 16px) !important;
+    border-radius: 12px !important;
+  }
+  
+  .lp-nav-inner {
+    height: 56px !important;
+    padding: 0 16px !important;
+  }
+  
+  #landing-root {
+    padding-top: 72px !important; /* Adjust for smaller navbar */
+  }
+  
+  .lp-nav-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .lp-nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .lp-nav-toggle:active {
+    background: rgba(255, 255, 255, 0.12);
+  }
+  
+  .lp-nav-links {
+    display: none !important;
+  }
+  
+  /* Mobile menu open state */
+  .lp-nav.open .lp-nav-links {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: rgba(9, 10, 12, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 8px;
+    gap: 4px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  
+  .lp-nav.open .lp-nav-link {
+    width: 100%;
+    padding: 12px 16px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .lp-nav.open .lp-nav-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .lp-nav-actions .lp-btn-primary {
+    display: none !important;
+  }
+  
+  .lp-nav.open .lp-nav-actions .lp-btn-primary {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .lp-brand {
+    font-size: 14px !important;
+    gap: 8px !important;
+  }
+  
+  .lp-brand svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
 }
