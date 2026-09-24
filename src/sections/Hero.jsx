@@ -5,7 +5,7 @@ import EmailFormSimple from '../EmailFormSimple'
 import { useLanguage } from '../useLanguage'
 
 /* ============================================================================
-   Hero — Bold, clean, no clutter
+   Hero — Bold, clean, with screenshot preview
    ========================================================================== */
 
 export default function Hero() {
@@ -47,6 +47,22 @@ export default function Hero() {
             <span className="lp-status-dot"></span>
             {t.hero.status}
           </p>
+        </motion.div>
+
+        {/* Preview screenshot that peeks from bottom */}
+        <motion.div 
+          className="lp-hero-preview"
+          initial={reduced ? false : { opacity: 0, y: 60, scale: 0.95 }}
+          animate={reduced ? false : { opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, ease: EASE, delay: 0.3 }}
+        >
+          <div className="lp-hero-preview-inner">
+            <img 
+              src="/images/screenshots/agent.png" 
+              alt="VisionCraft AI Agent Interface Preview"
+              className="lp-hero-preview-image"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

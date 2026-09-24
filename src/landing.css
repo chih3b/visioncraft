@@ -563,6 +563,47 @@ html, body {
   flex-shrink: 0;
 }
 
+/* Hero preview screenshot — modern peek from bottom */
+.lp-hero-preview {
+  margin-top: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.lp-hero-preview-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(85, 215, 229, 0.15);
+  box-shadow: 
+    0 0 0 1px rgba(85, 215, 229, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 8px 24px rgba(85, 215, 229, 0.1);
+  transition: all 0.4s ease-out;
+}
+
+.lp-hero-preview-inner:hover {
+  transform: translateY(-4px);
+  border-color: rgba(85, 215, 229, 0.25);
+  box-shadow: 
+    0 0 0 1px rgba(85, 215, 229, 0.15),
+    0 24px 80px rgba(0, 0, 0, 0.7),
+    0 12px 32px rgba(85, 215, 229, 0.15);
+}
+
+.lp-hero-preview-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
 /* Small mono meta line (download version/size, etc.). Was folded into the old
    hero note; now a neutral utility since the hero uses its own status line. */
 .lp-meta-note {
@@ -3613,6 +3654,14 @@ html::-webkit-scrollbar-thumb:hover {
     min-height: auto;
   }
   
+  .lp-hero-preview {
+    margin-top: 48px;
+  }
+  
+  .lp-hero-preview-inner {
+    border-radius: 12px;
+  }
+  
   .lp-hero-frame {
     padding: 20px 32px;
     margin-bottom: 20px;
@@ -3945,6 +3994,14 @@ html::-webkit-scrollbar-thumb:hover {
   .lp-hero {
     padding-top: 40px;
     padding-bottom: 48px;
+  }
+  
+  .lp-hero-preview {
+    margin-top: 40px;
+  }
+  
+  .lp-hero-preview-inner {
+    border-radius: 10px;
   }
   
   .lp-hero-frame {
