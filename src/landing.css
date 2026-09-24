@@ -268,6 +268,8 @@ html, body {
 /* ── Top navigation ─────────────────────────────────────────────────────────
    Sticky + frosted. Direct child of the scrolling root — no transformed
    ancestor between it and the page, so position: sticky stays reliable. */
+/* ── Nav (header) ───────────────────────────────────────────────────────────
+   Fixed navbar with glassmorphism effect - v2.0 FIXED POSITION */
 .lp-nav {
   position: fixed;
   top: 16px;
@@ -3244,6 +3246,11 @@ html, body {
   padding-top: 96px !important; /* navbar height + top margin + some buffer */
 }
 
+/* Hero section - remove extra padding since landing-root provides spacing */
+.lp-hero {
+  padding-top: 0 !important;
+}
+
 
 .lp-nav-inner {
   height: 64px;
@@ -3291,6 +3298,7 @@ html, body {
 
 @media (max-width: 768px) {
   .lp-nav {
+    position: fixed !important;
     top: 8px !important;
     left: 8px !important;
     right: 8px !important;
@@ -3580,7 +3588,7 @@ html::-webkit-scrollbar-thumb:hover {
 /* Tablet improvements */
 @media (max-width: 900px) {
   .lp-hero {
-    padding-top: 100px;
+    padding-top: 40px;
     padding-bottom: 80px;
   }
   
@@ -3600,7 +3608,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 @media (max-width: 720px) {
   .lp-hero {
-    padding-top: 80px;
+    padding-top: 32px;
     padding-bottom: 60px;
     min-height: auto;
   }
@@ -3935,7 +3943,7 @@ html::-webkit-scrollbar-thumb:hover {
 /* Small mobile improvements */
 @media (max-width: 480px) {
   .lp-hero {
-    padding-top: 60px;
+    padding-top: 24px;
     padding-bottom: 48px;
   }
   
@@ -4050,7 +4058,7 @@ html::-webkit-scrollbar-thumb:hover {
 /* Landscape mobile - optimize for horizontal orientation */
 @media (max-height: 600px) and (max-width: 900px) {
   .lp-hero {
-    padding-top: 48px;
+    padding-top: 20px;
     padding-bottom: 36px;
     min-height: auto;
   }
@@ -4218,14 +4226,15 @@ html::-webkit-scrollbar-thumb:hover {
   right: 0;
   min-width: 160px;
   padding: 6px;
-  background: rgba(14, 16, 20, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(85, 215, 229, 0.15);
+  background: rgba(14, 16, 20, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(85, 215, 229, 0.2);
   border-radius: var(--radius-lg);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 2px 8px rgba(85, 215, 229, 0.1);
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 2px 12px rgba(85, 215, 229, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   z-index: 1000;
   animation: slideDown 0.2s var(--ease-out);
 }
@@ -5727,6 +5736,7 @@ main {
 
 @media (max-width: 768px) {
   .lp-nav {
+    position: fixed !important;
     top: 8px !important;
     width: calc(100% - 16px) !important;
     border-radius: 12px !important;
@@ -5738,7 +5748,7 @@ main {
   }
   
   #landing-root {
-    padding-top: 72px !important; /* Adjust for smaller navbar */
+    padding-top: 80px !important; /* Adjust for smaller navbar + better spacing */
   }
   
   .lp-nav-toggle {
