@@ -3243,12 +3243,12 @@ html, body {
 
 /* Add padding to body to account for fixed navbar */
 #landing-root {
-  padding-top: 96px !important; /* navbar height + top margin + some buffer */
+  padding-top: 110px !important; /* navbar height + top margin + more buffer for breathing room */
 }
 
-/* Hero section - remove extra padding since landing-root provides spacing */
+/* Hero section - add extra padding for better spacing */
 .lp-hero {
-  padding-top: 0 !important;
+  padding-top: 40px !important;
 }
 
 
@@ -3588,7 +3588,7 @@ html::-webkit-scrollbar-thumb:hover {
 /* Tablet improvements */
 @media (max-width: 900px) {
   .lp-hero {
-    padding-top: 40px;
+    padding-top: 60px;
     padding-bottom: 80px;
   }
   
@@ -3608,7 +3608,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 @media (max-width: 720px) {
   .lp-hero {
-    padding-top: 32px;
+    padding-top: 48px;
     padding-bottom: 60px;
     min-height: auto;
   }
@@ -3943,7 +3943,7 @@ html::-webkit-scrollbar-thumb:hover {
 /* Small mobile improvements */
 @media (max-width: 480px) {
   .lp-hero {
-    padding-top: 24px;
+    padding-top: 40px;
     padding-bottom: 48px;
   }
   
@@ -4058,7 +4058,7 @@ html::-webkit-scrollbar-thumb:hover {
 /* Landscape mobile - optimize for horizontal orientation */
 @media (max-height: 600px) and (max-width: 900px) {
   .lp-hero {
-    padding-top: 20px;
+    padding-top: 32px;
     padding-bottom: 36px;
     min-height: auto;
   }
@@ -5748,7 +5748,7 @@ main {
   }
   
   #landing-root {
-    padding-top: 80px !important; /* Adjust for smaller navbar + better spacing */
+    padding-top: 100px !important; /* Increased for more breathing room on mobile */
   }
   
   .lp-nav-toggle {
